@@ -1,0 +1,460 @@
+\documentclass[10pt]{beamer}
+
+\mode<presentation>
+{
+	\usetheme{Antibes}
+	\usecolortheme{whale}
+	\setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+\renewcommand{\qed}{\hfill\blacksquare}
+
+\title[Existence and Uniqueness Theorem of the solution to Cauchy Problem]
+{Existence and Uniqueness Theorem of the solution to Cauchy Problem}
+
+\subtitle
+{Banach's fixed-point Theorem and its application}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Overview}
+    \tableofcontents[currentsection, currentsubsection]
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Overview}
+    \tableofcontents[currentsection, currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Overview}
+  \tableofcontents
+\end{frame}
+
+\section{Metric spaces}
+\begin{frame}
+	\begin{block}{Defintion: Metric space}
+		A metric space is an ordered pair \((M, d)\), in which \(M\) is a set,
+		and \(d:M \times M \rightarrow \mathbb{R}\) is the metric of this set, that satisfies
+		the axioms listed below.
+	\end{block}
+
+	\begin{alertblock}{Axioms}
+		Let \(x, y, z \in M\), then
+		\begin{itemize}
+			\item \(d(x, y) \ge 0\), \(d(x, y) = 0\) iff \(x = y\);
+			\item \(d(x, y) = d(y, x)\) -- symmetry;
+			\item \(d(x, z) \le d(x, y) + d(y, z)\) -- triangle inequality.
+		\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}
+	The Cauchy criterion is necessary and sufficient condition for a sequence \(x_n\) to converge.
+	\begin{block}{Defintion: Cauchy Criterion}
+		If for all \(\varepsilon > 0\) there exists a positive \(N \in \mathbb{N}\) such that
+		\(d(x_n, x_m) < \varepsilon\) holds for all positive integers \(n, m > N\), then \(\{x_n\}\) converges.
+	\end{block}
+
+	\begin{block}{Defintion: Cauchy or Fundamental sequence}
+		Given a metric space \((M, d)\). The sequence \(x_1, x_2, x_3, ..., x_n \in M\) is a Cauchy sequence if
+		\(\{x_n\}\) satisfies Cauchy Criterion.
+	\end{block}
+
+	\begin{block}{Defintion: Complete metric space}
+		A complete metric space is a metric space \((M, d)\) such that
+		all Cauchy sequences consisting of elements in \(M\) also have a limit in \(M\).
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem: Completeness of \((\mathbb{R}^n, d)\)}
+		The metric space \((\mathbb{R}^n, d)\) with respect to the metric \(d\)
+		\[d(x, y) = \left( \sum^n_{i=0} |x_i - y_i| \right)^{1/2}\]
+		for all \(x, y \in \mathbb{R}^n\) is complete.
+	\end{block}
+	(Hint: proof can be done using convergence of monotonic and bounded sequence and
+	Bolzano-Weierstrass Theorem.)
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem: Completeness of a closed subset}
+		Let \((M, d)\) be a complete metric space, and let \(X\) be a subset of \(M\). The subspace \((X, d)\) is a complete metric space if and only if \(X\) is a closed subset of \(M\).
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Defintion: Lipschitz continuity}
+		Given two metric spaces \((X, d_X)\) and \((Y, d_Y)\), a function \(f: X \rightarrow Y\) is called
+		Lipschitz continious if there exists a Lipschitz constant, \(L \ge 0\), \(L \in \mathbb{R}\), such that
+		\[d_Y(f(x_1), f(x_2)) \le Ld_X(x_1, x_2)\]
+		holds for all \(x_1\) and \(x_2\) in \(X\).
+	\end{block}
+
+	\begin{block}{Defintion: Contraction mapping}
+		Given a metric space \((M, d)\), a Lipschitz continious function \(f: M \rightarrow M\) is called
+		contraction mapping if and only if its Lipschitz constant
+		\[L \in [0;1).\]
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem}
+		Every contraction mapping is Lipschitz continuous and hence uniformly continuous.
+	\end{block}
+\end{frame}
+
+\section{Banach's fixed-point Theorem}
+\begin{frame}
+	\begin{block}{Definition: Fixed-point}
+		A fixed-point is a point that for the given mapping is mapped onto itself, that is
+		\[f(x^*) = x^*.\]
+	\end{block}
+
+	\begin{block}{Theorem: Banach's fixed-point Theorem}
+		Let an ordered pair \((M, d)\) be a non-empty complete metric space. Let \(T:M \rightarrow M\)
+		be a contraction mapping onto \(M\), that is, there exists \(\alpha \in [0;1)\) such that
+		\[d(T(x), T(y)) \le \alpha d(x, y)\]
+		holds for all \(x, y \in M\). Then the mapping \(T\) has a unique
+		fixed point \(x^* \in M\).
+	\end{block}
+
+	Also see: \url{https://www.desmos.com/calculator/vdlmrufr9w}
+\end{frame}
+
+\subsection{Proof for existence of a fixed-point}
+\begin{frame}
+	\textbf{Proof.} Let \((M, d)\) be a non-empty complete metric space, \(x_0\) be an arbitrary point of \(M\), and
+	\(T\) be a contraction map onto \(M\).
+	\vspace{0.3cm}
+
+	\onslide<2->{Consider the sequence \(\{x_n\}\)
+	\[x_0 = x_0, \, x_1 = T(x_0), \, x_2 = T(x_1), ..., x_{n + 1} = T(x_n).\]}
+	\onslide<3->{Having proved that \(\{x_n\}\) is a Cauchy sequence, we will show
+	that \(\{x_n\}\) is a sequence that converges in a complete metric space \(M\).
+	}
+	\vspace{0.3cm}
+
+	\onslide<4->{Consider the following sequence of inequalities subject to the definition of a contraction mapping.}
+	\begin{equation*}
+		\begin{gathered}
+			\onslide<5->{d(x_1, x_2) = d(T(x_0), T(x_1)) \le \alpha d(x_0, x_1),   \\}
+			\onslide<6->{d(x_2, x_3) = d(T(x_1), T(x_2)) \le \alpha^2 d(x_0, x_1), \\}
+			\onslide<7->{d(x_3, x_4) = d(T(x_2), T(x_3)) \le \alpha^3 d(x_0, x_1), \\
+			\vdots}
+		\end{gathered}
+	\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\textbf{Assumption.} \(d(x_n, x_{n + 1}) \le \alpha^n d(x_0, x_1)\). We will prove this assumption
+	by mathematical induction.
+	\vspace{0.3cm}
+
+	\onslide<2->{We have established that \(d(x_1, x_2) \le \alpha d(x_0, x_1)\) is true for \(n = 1\).}
+	\onslide<3->{Suppose \[d(x_k, x_{k + 1}) \le \alpha^k d(x_0, x_1)\] is true for \(k\).}
+	\onslide<4->{Let us show that our assumption is true for \(k + 1\).}
+	\onslide<5->{\[d(x_{k + 1}, x_{k + 2}) = d(T(x_k), T(x_{k + 1})) \le \alpha \uwave{d(x_k, x_{k + 1})} \le
+	\alpha^{k + 1} d(x_0, x_1).\]}
+	\onslide<6->{Therefore, \(d(x_n, x_{n + 1}) \le \alpha^n d(x_0, x_1)\)
+	true for any \(n \in \mathbb{N}\).}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} Apply the triangle inequality to \(d(x_n, x_m)\), \(n, m \in \mathbb{N}\), and \(m > n\).
+	\begin{align*}
+		\onslide<2->{d(x_n, x_m) &\le d(x_n, x_{n+1}) + d(x_{n+1}, x_{n+2}) + ... + d(x_{m - 1} , x_m) \le \\}
+		\onslide<3->{&\le \alpha^n d(x_0, x_1) + \alpha^{n+1} d(x_0, x_1) + ... + \alpha^{m - 1} d(x_0, x_1) = \\}
+		\onslide<4->{&= \sum_{k = 0}^{m - n - 1} \alpha^k \cdot \alpha^{n}d(x_0, x_1) \le \\}
+		\onslide<5->{&\le \sum_{k = 0}^{\infty} \alpha^k \cdot \alpha^{n}d(x_0, x_1)
+		=^* \frac{1}{1 - \alpha}\alpha^{n}d(x_0, x_1),}
+	\end{align*}
+	\onslide<6->{*\(|\alpha| < 1\) by the definition of contraction mapping.}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} Let \(m > n > N\), \(N \in \mathbb{N}\). Having
+	\[d(x_n, x_m) \le \frac{1}{1 - \alpha}\alpha^{n}d(x_0, x_1),\]
+	we tend to \(N \rightarrow \infty\), then \(n \rightarrow \infty\) and \(m \rightarrow \infty\).
+	\onslide<2->{\[\lim_{n \rightarrow \infty} \frac{\alpha^{n}}{1 - \alpha}d(x_0, x_1) = 0,\]
+	since \(|\alpha| < 1\).} \onslide<4->{Therefore, we get that for \(N \rightarrow \infty\)
+	\[0 \le d(x_n, x_m) \le 0 \Rightarrow d(x_n, x_m) = 0.\]}
+	\onslide<4->{This means that for an arbitrary \(\varepsilon > 0\) there exists \(N_0 \in \mathbb{N}\) such that
+	for \(N > N_0\) the following holds}
+	\onslide<5->{\[\frac{\alpha^{n}}{1 - \alpha}d(x_0, x_1) < \varepsilon} \onslide<7->{\xRightarrow[]{d(x_0, x_1) \ne 0}
+	\frac{\alpha^{n}}{1 - \alpha} < \frac{\varepsilon}{d(x_0, x_1)}.\]}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} Next, we get that
+	\[d(x_n, x_m) \le \frac{\alpha^{n}}{1 - \alpha}d(x_0, x_1) \le
+	\frac{\varepsilon}{d(x_0, x_1)} d(x_0, x_1) = \varepsilon.\]
+	\onslide<2->{Therefore, since \(m, n, N\) are arbitrary, \(\{x_n\}\) is a Cauchy sequence.}
+	\vspace{0.3cm}
+
+	\onslide<3->{Since \(\{x_n\}\) is an arbitrary Cauchy sequence in the complete metric space \(M\),
+	for \(n \rightarrow \infty\), \(x_n \rightarrow x^* \in M\).}
+	\vspace{0.3cm}
+
+	\onslide<4->{Now we will prove that limit \(x^*\) is a fixed point.}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} We have that \(x_{n + 1} = T(x_{n})\). As we tend \(n \rightarrow \infty\), we get
+	\begin{align*}
+		\onslide<2->{\lim_{n \rightarrow \infty}x_{n + 1} &= \lim_{n \rightarrow \infty}T(x_{n}), \\}
+		\onslide<3->{x^* &= \lim_{n \rightarrow \infty}T(x_{n}) = T(\lim_{n \rightarrow \infty}x_{n}) = T(x^*)}
+	\end{align*}
+	\onslide<3->{since \(T\) is a continuous function.}
+	\vspace{0.3cm}
+
+	\onslide<4->{This proves that in a non-empty complete metric space \((M, d)\)
+	with the contraction map \(T\) there exists a fixed point \(x^* = T(x^*)\). \\ \(\qed\)}
+\end{frame}
+
+\subsection{Proof for uniqueness of a fixed-point}
+\begin{frame}
+	\textbf{Proof.} We will now prove the uniqueness of the fixed point \(x^*\).
+	Using proof by contradiction, suppose that there is another fixed point \(z^*\)
+	different from \(x^*\). \onslide<2->{Then let us find \(d(x^*, z^*)\).
+	\[d(x^*, z^*) = d(T(x^*), T(z^*)) \le \alpha d(x^*, z^*),\]}
+	\onslide<3->{and since \(|\alpha| < 1\)}
+	\begin{gather*}
+		\onslide<4->{d(x^*, z^*) \le \alpha d(x^*, z^*) < d(x^*, z^*), \\}
+		\onslide<5->{d(x^*, z^*) < d(x^*, z^*).}
+	\end{gather*}
+	\onslide<6->{This is a contradiction, and hence the assumption that
+	there is another different fixed point is not true.}
+	\onslide<7->{Therefore, the fixed point \(x^*\) is unique. \\ \(\qed\)}
+\end{frame}
+
+\section{Pointwise and Uniform convergence}
+\begin{frame}
+	\begin{block}{Theorem: Pointwise convergence}
+		To say that \(f_n(x) \rightarrow f(x)\) pointwise is to say that
+		\[|f_n(x) - f(x)| \rightarrow 0 \text{, as } n \rightarrow \infty.\]
+	\end{block}
+
+	\begin{block}{Theorem: Uniform convergence}
+		To say that \(f_n(x) \rightarrow f(x)\) uniformly on \(X\) is to say that
+		\[\sup_{x \in X}|f_n(x) - f(x)| \rightarrow 0 \text{, as } n \rightarrow \infty.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem: Uniform convergence of the continious function}
+		If the sequence of continious functions \(f_n(x) \rightarrow f(x)\) uniformly on \(X\),
+		then \(f(x)\) is continious on \(X\).
+	\end{block}
+
+	\textbf{Proof.} Let \(\varepsilon > 0\). Then there exists an integer \(N\) such that
+	for all integers \(n \ge N\)
+	\[\sup_{x \in X}|f_n(x) - f(x)| < \frac{\varepsilon}{3}.\]
+	Let \(\delta > 0\). Suppose that \(\|x - y\| < \delta\) for all \(x, y \in X\), then because of the continuity of \(f_n\)
+	\[\|f_N(x) - f_N(y)\| < \frac{\varepsilon}{3}.\]
+	Finally, using triangle inequality, we have for all \(x, y \in X\)
+	\[\|f(x) - f(y)\| \le \|f(x) - f_N(x)\| + \|f_N(x) - f_N(y)\| + \|f_N(y) - f(y)\| < \varepsilon.\]
+	Consequently, \(f\) is continuos at every point \(x \in X\). \\ \(\qed\)
+\end{frame}
+
+\section{Normed spaces}
+\begin{frame}
+	\begin{block}{Definition: Normed space}
+		A normed space is an ordered pair \((V, \| \cdot \|)\), where \(V\) is a vector space,
+		and \(\| \cdot \|:V \rightarrow \mathbb{R}\) is the norm of this space, that satisfies
+		the axioms listed below.
+	\end{block}
+
+	\begin{alertblock}{Axioms}
+		Let \(x, y \in V\), then
+		\begin{itemize}
+			\item \(\|x\| \ge 0\), \(\|x\| = 0\) implies \(x = 0\);
+			\item \(\| \lambda x \| = |\lambda| \cdot \|x\|\), for all scalars \(\lambda\);
+			\item \(\|x + y\| \ge \|x\| + \|y\|\) -- triangle inequality.
+		\end{itemize}
+	\end{alertblock}
+
+	\begin{exampleblock}{Corollary}
+		Any normed space \((V, \| \cdot \|)\) is a metric space with the metric
+		\(d(x, y) = \| x - y \|\) on \(V\).
+	\end{exampleblock}
+\end{frame}
+
+\section{Space of continuous functions}
+\begin{frame}
+	\begin{block}{Space of continuous functions}
+		A space of continuous functions \(C[a;b]\) is a normed space whose elements are
+		functions continuous on the interval \([a;b]\). The norm of such a space for \(y \in C[a;b]\) is defined as
+		uniform norm
+		\[\|y\| = \sup_{x \in [a;b]}|y(x)|.\]
+	\end{block}
+	Using the norm in this form, we can define a limit for uniform convergence of \(\{f_n\}\) on \(X\)
+	\[\lim_{n \rightarrow \infty} \|f_n - f\| \rightarrow 0.\]
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem: Completeness of \(C[a,b]\) with respect to the uniform norm}
+		A metric space \((C[a;b], d)\) of continuous functions on an interval \([a; b]\)
+		with the uniform metric
+		\[d(f, g) = \sup_{x \in [a,b]}|f(x) - g(x)|\]
+		is complete.
+	\end{block}
+
+	\textbf{Proof.} Consider an arbitrary fundamental sequence \(\{f_n\}\), \(n \in \mathbb{N}\), from \(C[a;b]\).
+	Let \(\varepsilon > 0\), then there exists \(N \in \mathbb{N}\) such that for all integers \(n, m > N\)
+	\[\sup_{x \in [a,b]}|f_n(x) - f_m(x)| < \frac{\varepsilon}{2}.\]
+	This implies that \(\{f_n(x)\}\) is a Cauchy sequence in \(\mathbb{R}\) for each fixed \(x \in [a, b]\).
+	Since \(\mathbb{R}\) is complete, \(\{f_n(x)\}\) has a limit, which is also in \(\mathbb{R}\).
+	\vspace{0.3cm}
+
+	We will call this limit \(f(x)\).
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} Then \(f_n(x) \rightarrow f(x)\) for each fixed \(x \in [a;b]\), that is
+	for all \(\varepsilon > 0\), there exists a positive \(M \in \mathbb{N}\) such that for all natural \(m > M\)
+	\[|f_m(x) - f(x)| < \frac{\varepsilon}{2}.\]
+
+	Using triangle inequality, for all \(x \in X\)
+	\[|f_n(x) - f(x)| \le |f_n(x) - f_m(x)| + |f_m(x) - f(x)| < \varepsilon.\]
+	It follows that for \(n \rightarrow \infty\), \(d(f_n(x), f(x)) \rightarrow 0\).
+	Therefore, \(f_n \rightarrow f\) uniformly on the segment \([a;b]\). Uniform convergence of
+	continious function implies that \(f\) is also continious on \([a;b]\).
+	\vspace{0.3cm}
+
+	We have shown that an arbitrary Cauchy sequence in the metric space of continuous functions \((C[a, b], d)\)
+	on the interval \([a, b]\) with metric \(d\) has a limit also in \(C[a, b]\). Therefore, \((C[a, b], d)\) is
+	complete metric space. \\ \(\qed\)
+\end{frame}
+
+\section{Picard–Lindelöf Theorem}
+\begin{frame}
+	\begin{block}{Theorem: Picard–Lindelöf Theorem}
+		Let \(f(x,y)\) be a function continuous on a rectangle
+		\[R=\{(x,y):|x_0 - x| \le a, |y_0 - y| \le b\},\]
+		and hence, bounded in \(R\), \(|f(x,y)| \le M\).
+		Suppose that \(f\) is Lipschitz continuous on \(R\) with respect to its second
+		argument \(y\), meaning that
+		\[|f(x, y) - f(x, z)| \le L|y - z|\]
+		for all \((x, y), \, (x, z) \in R\).
+		Then, there exists positive \(\varepsilon = \min{\{a, \frac{b}{M}, \frac{1}{L}\}}\) such that
+		Cauchy problem
+		\[\begin{cases}y' = f(x,y) \\ y(x_0) = y_0 \end{cases}\]
+		has a unique solution solution on the interval
+		\([x_0 - \varepsilon; x_0 + \varepsilon]\).
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	We will divide the proof of the Picard-Lindelöf Theorem into several parts:
+	\begin{itemize}
+		\item transform the Cauchy problem into an equivalent integral equation;
+		\item ...show the existence of a contraction mapping;
+		\item ...apply the Banach fixed point Theorem.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof. Part 1.} If \(y(x) \in C[x_0 - a;x_0 + a]\) is a solution of the given
+	Cauchy problem, then by integrating \(y' = f(x, y)\) we get
+	\onslide<2->{\[\int_{x_0}^{x} y'(t) dt = \int_{x_0}^{x} f(t,y(t)) dt,\]}
+	\onslide<3->{then from the Fundamental Theorem of Calculus follows
+	\[y(x) = y_0 + \int_{x_0}^{x} f(t,y(t)) dt.\]}
+	\onslide<4->{Let us denote the right hand side of the latter equation as \(\mathcal{T}\), that is}
+	\onslide<5->{\[\mathcal{T}(y(x)) := y_0 + \int_{x_0}^{x} f(t,y(t)) dt, \, x \in \mathcal{I},\]}
+	\onslide<6->{where \(\mathcal{I} := [x_0 - \varepsilon; x_0 + \varepsilon]\) is an interval for which
+	solutions to the given Cauchy problem are defined within the rectangle \(R\) for every \(x \in \mathcal{I}\).}
+\end{frame}
+
+\begin{frame}
+	\textbf{Remark.} Notice that
+	\[|f(x, y)| \le M \Leftrightarrow |y'| \le M.\]
+	This is means that tangent of tangent slope does not exceed \(M\). Since we analyze function
+	continious on the interval \(\mathcal{I}\) within the rectangle \(R\) with sides \(2a\) and \(2b\)
+	\[|y'| \le M \le \frac{2b}{2\varepsilon} = \frac{b}{\varepsilon}.\]
+	From this follow an additional upper bound for \(\varepsilon\).
+	\[\varepsilon \le \frac{b}{M}.\]
+\end{frame}
+
+\begin{frame}
+	\textbf{Motivation for the further steps.} As every solution to the given Cauchy problem
+	corresponds to a fixed point of \(\mathcal{T}\),
+	showing that \(\mathcal{T}\) is a contraction mapping of the complete
+	metric space \((\mathcal{X}, d)\) is sufficient to prove existence and uniqueness
+	of this solution by Banach’s fixed-point Theorem.
+	\vspace{0.3cm}
+
+	\onslide<2->{We will build the set \(\mathcal{X}\) is such a way, that it contains solutions to the given Cauchy problem
+	that are defined within the rectangle \(R\) for every \(x \in \mathcal{I}\).}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} We will build \(\mathcal{X}\) as a subspace of \(C(\mathcal{I})\).
+	Let us bound all solutions \(y(x)\), so that they do not go outside the rectangle \(R\) at all points of the
+	interval \([x_0 - \varepsilon; x_0 + \varepsilon]\).
+	\onslide<2->{\[|y_0 - y(x)| = \left|\int_{x_0}^{x} f(t,y(t)) dt\right| \le |x_0 - x| \cdot |\max_{x \in \mathcal{I}}{f(x,y(x))}|
+	\le \varepsilon M.\]}
+	\onslide<3->{Then
+	\[\mathcal{X} := \{y \in C(\mathcal{I}) : y(x_0) = y_0, \, \sup_{x \in \mathcal{I}}|y_0 - y(x)| \le \varepsilon M\}.\]}
+
+	\onslide<4->{Since \(\mathcal{X}\) is a closed subspace of \(C\),
+	metric space \((\mathcal{X}, d)\) is complete with respect to the uniform metric \(d\).}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof. Part 2.} To show that \(\mathcal{T}\) is a contraction mapping is to show that
+	\[\mathcal{T}: \mathcal{X} \rightarrow \mathcal{X}\] and that with \(\alpha \in [0;1)\)
+	\[d(\mathcal{T}(g), \mathcal{T}(h)) \le \alpha d(g, h)\]
+	holds for all \(g, h \in \mathcal{X}\).
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} We claim that \(\mathcal{T}: \mathcal{X} \rightarrow \mathcal{X}\).
+	Firstly, consider arbitrary \(g \in \mathcal{X}\), then we need to show \(\mathcal{T}\) that
+	does not strive away from the point \((x_0, y_0)\) ouside the rectangle \(R\)
+	\onslide<2->{\[|y_0 - \mathcal{T}(g(x))| = \left|\int_{x_0}^{x} f(t,g(t)) dt\right| \le |x_0 - x|
+	\cdot |\max_{x \in \mathcal{I}}{f(x,g(x))}| \le \varepsilon M.\]}
+	\onslide<3->{So, \(\mathcal{T}(g(x))\) is a function passing through \((x_0, y_0)\) and
+	continious within \(R\) on \(\mathcal{I}\).}
+	\onslide<4->{Therefore, we showed that \(\mathcal{T}: \mathcal{X} \rightarrow \mathcal{X}\), indeed.}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof (cont).} Now, we we claim that \(\mathcal{T}\) is a contraction mapping.
+	Consider arbitrary \(g, h \in \mathcal{X}\). Then,
+	\onslide<2->{\[d(\mathcal{T}(g), \mathcal{T}(h)) = |\mathcal{T}(g) - \mathcal{T}(h)| \le\]}
+	\onslide<3->{\[\le \int_{x_0}^x f(t, g(t)) - g(t, h(t)) dt \le\]}
+	\onslide<4->{\[\le |x_0 - x| \max_{x \in \mathcal{I}}{|f(x, g(x)) - g(x, h(x))|} \le\]}
+	\onslide<5->{\[\le |x_0 - x| \max_{x \in \mathcal{I}}{L|g(x) - h(x)|} \le\]}
+	\onslide<6->{\[\le \varepsilon L d(g, h).\]}
+
+	\onslide<7->{Since we wish to show that \(\mathcal{T}\) is a contraction mapping, \(0 \le \varepsilon L < 1\).}
+	\onslide<8->{Therefore, \(\mathcal{T}\) is a contraction mapping on \(\mathcal{X}\) when \(\varepsilon < \frac{1}{L}\).}
+\end{frame}
+
+\begin{frame}
+	\textbf{Proof. Part 3.} We have shown that complete metric space \((\mathcal{X}, d)\)
+	has a contraction mapping \(\mathcal{T}\) on the interval \([x_0 - \varepsilon;x_0 + \varepsilon]\) on \(\mathcal{X}\),
+	where \(\varepsilon = \min{\{a, \frac{b}{M}, \frac{1}{L}\}}\).
+	Banach's fixed-point Theorem then implies that \(\mathcal{T}\) has a unique
+	fixed point \(y(x) \in \mathcal{X}\) such that
+	\[y(x) = y_0 + \int_{x_0}^{x} f(t,y(t)) dt.\]
+
+	\onslide<2->{\textbf{Conclusion:} It thus follows that the given initial value problem has a unique continuous solution
+	\(y(x)\) on the interval \([x_0 - \varepsilon;x_0 + \varepsilon]\) on \(\mathcal{X}\),
+	where \(\varepsilon = \min{\{a, \frac{b}{M}, \frac{1}{L}\}}\). \\ \(\qed\)}
+\end{frame}
+
+\end{document}
