@@ -1,4 +1,4 @@
-# Existence and Uniqueness Theorem of the solution to Cauchy Problem
+# Existence and Uniqueness of the Solution to Cauchy Problem
 
 This presentation covers some key concepts in metric spaces, including Banach's fixed-point theorem, notions of convergence, normed spaces, spaces of continuous functions, and the Picard–Lindelöf theorem.
 
